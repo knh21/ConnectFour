@@ -1,4 +1,4 @@
-const gameArray = [
+const board = [
     [0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0],
@@ -19,6 +19,8 @@ let disc;
 let selectTower;
 let currentPlayer = 1
 
+
+
 // function player1() {
 //     prompt("Enter your name. You will be Player 1")
 // }
@@ -26,22 +28,112 @@ let currentPlayer = 1
 
 
 function startGame(event) {
+    selectTower = event.currentTarget
+    let column = parseInt(selectTower.id.slice(-1))
+    console.log(column);
+  
+    
     disc = document.createElement("div")
     if (currentPlayer === 1) {
         disc.className = "redDisc"
-        currentPlayer = 2
+        if (selectTower.childElementCount < 6) {
+            selectTower.appendChild(disc)
+            if(selectTower.childElementCount === 1){
+                board[5][column] = 1
+              } else if(selectTower.childElementCount === 2) {
+                  board[4][column] = 1
+              }else if(selectTower.childElementCount === 3) {
+                  board[3][column] = 1
+              }else if(selectTower.childElementCount === 4) {
+                  board[2][column] = 1
+              }else if(selectTower.childElementCount === 5) {
+                  board[1][column] = 1
+              } else{
+                  board[0][column] = 1
+              }
+              winnerVertical(board, currentPlayer)
+              winnerHorizontal(board, currentPlayer)
+            currentPlayer = 2
+        } else{
+            alert("column is full, please choose another")
+            currentPlayer = 1
+        }
     } else {
         //player2()
         disc.className = "blackDisc"
-        currentPlayer = 1
+        if (selectTower.childElementCount < 6) {
+            selectTower.appendChild(disc)
+            if(selectTower.childElementCount === 1){
+                board[5][column] = 2
+              } else if(selectTower.childElementCount === 2) {
+                  board[4][column] = 2
+              }else if(selectTower.childElementCount === 3) {
+                  board[3][column] = 2
+              }else if(selectTower.childElementCount === 4) {
+                  board[2][column] = 2
+              }else if(selectTower.childElementCount === 5) {
+                  board[1][column] = 2
+              } else{
+                  board[0][column] = 2
+              }
+              winnerVertical(board, currentPlayer)
+              winnerHorizontal(board, currentPlayer)
+            currentPlayer = 1
+        } else{
+            alert("column is full, please choose another")
+            currentPlayer = 2
+        }
     }
-    //changeColor()
-    selectTower = event.currentTarget
-    if (selectTower.childElementCount < 6) {
-        selectTower.appendChild(disc)
-    }
+   console.log(board);
     tieGame()
 }
+
+
+const winnerVertical = function (model, player) {
+    for (let rowNum=0; rowNum<3; rowNum++) {
+        for (let colNum=0; colNum<model[rowNum].length; colNum++) {
+            if (model[rowNum][colNum] === model[rowNum+1][colNum] &&
+                model[rowNum][colNum] === model[rowNum+2][colNum] &&
+                model[rowNum][colNum] === model[rowNum+3][colNum] &&
+                model[rowNum][colNum] !== 0) {
+                    console.log(` Player ${player} wins`);
+                    
+            }
+        }
+    }
+    // return false
+}
+
+
+const winnerHorizontal = function (model, player) {
+    for (let rowNum=0; rowNum<3; rowNum++) {
+        for (let colNum=0; colNum<model[rowNum].length; colNum++) {
+            if (model[rowNum][colNum] === model[rowNum][colNum+1] &&
+                model[rowNum][colNum] === model[rowNum][colNum+2] &&
+                model[rowNum][colNum] === model[rowNum][colNum+3] &&
+                model[rowNum][colNum] !== 0) {
+                console.log(` Player ${player} wins`);
+                    
+            }
+        }
+    }
+
+    // return false
+}
+
+
+
+
+// const winnerDiagonalUp = function (model) {
+//     return false
+// }
+
+
+// const winnerDiagonalDown = function (model) {
+//     return false
+// }
+
+
 
 
 
