@@ -1,0 +1,47 @@
+:root{
+    box-sizing: border-box;
+}
+
+#game {
+    margin: auto;
+    position: absolute;
+    left:315px;
+    width: 700px;
+    height: 500px;
+    background-color:rgb(50, 81, 218);
+    border:1px solid black;
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.384);
+    align-items: center;
+    display: flex;
+}
+
+body{
+    background-color: rgba(43, 144, 226, 0.5);
+}
+
+h1{
+    text-align: center;
+}
+
+.column {
+    border: 1px solid brown;
+    width: 100px;
+    height:497px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.redDisc {
+    background-color: red;
+    border-radius: 50%;
+    width:80px;
+    height:80px;
+}
+
+.blackDisc {
+    position: relative;
+    background-color:black;
+    border-radius: 50%;
+    width: 80px;
+    height:80px;
+}
