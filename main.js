@@ -16,34 +16,28 @@ const board = [
   let disc;
   let selectTower;
   let currentPlayer = 1
-  // function player1() {
-  //     prompt("Enter your name. You will be Player 1")
-  // }
-  // player1()
+
+
   function startGame(event) {
     selectTower = event.currentTarget
     disc = document.createElement("div")
-    if (currentPlayer === 1) {
+    if (currentPlayer === "blackDisc") {
         disc.className = "redDisc"
         if (selectTower.childElementCount < 6) {
             selectTower.appendChild(disc)
-            // winnerHorizontal(board, currentPlayer)
-            currentPlayer = 2
+            currentPlayer = "redDisc"
         } else {
             alert("column is full, please choose another")
-            currentPlayer = 1
+            currentPlayer = "blackDisc"
         }
     } else {
-        //player2()
         disc.className = "blackDisc"
         if (selectTower.childElementCount < 6) {
             selectTower.appendChild(disc)
-            // winnerVertical(board, currentPlayer)
-            // winnerHorizontal(board, currentPlayer)
-            currentPlayer = 1
+            currentPlayer = "blackDisc"
         } else {
             alert("column is full, please choose another")
-            currentPlayer = 2
+            currentPlayer = "redDisc"
         }
     }
     tieGame()
@@ -55,7 +49,6 @@ const board = [
                 break;
             }
         }
-        console.log(board)
     }
     updateBoard()
       winnerVertical(board, currentPlayer)
@@ -63,6 +56,7 @@ const board = [
        winnerDiagonalDown(board, currentPlayer)
        winnerDiagonalUp(board, currentPlayer)
   }
+
   const winnerVertical = function (model, player) {
     for (let rowNum = 0; rowNum < 3; rowNum++) {
         for (let colNum = 0; colNum < model[rowNum].length; colNum++) {
@@ -71,7 +65,7 @@ const board = [
                 model[rowNum][colNum] === model[rowNum + 3][colNum] &&
                 model[rowNum][colNum] !== 0) {
                     setTimeout(function () {
-                        alert(` Player ${player} wins`);
+                        alert(` ${player} wins`);
                     }, 200)
                     setTimeout(function () { location.reload(); }, 250);
             }
@@ -79,6 +73,7 @@ const board = [
     }
     // return false
   }
+
   const winnerHorizontal = function (model, player) {
     for (let rowNum = 0; rowNum < 6; rowNum++) {
         for (let colNum = 0; colNum < model[rowNum].length; colNum++) {
@@ -87,7 +82,7 @@ const board = [
                 model[rowNum][colNum] === model[rowNum][colNum + 3] &&
                 model[rowNum][colNum] !== 0) {
                     setTimeout(function () {
-                        alert(` Player ${player} wins`);
+                        alert(`  ${player} wins`)
                     }, 200)
                     setTimeout(function () { location.reload(); }, 250);
             }
@@ -95,6 +90,7 @@ const board = [
     }
     // return false
   }
+
   const winnerDiagonalDown = function (model,player) {
     for (let rowNum = 0; rowNum < 3; rowNum++) {
         for (let colNum = 0; colNum < model[rowNum].length; colNum++) {
@@ -103,7 +99,7 @@ const board = [
                 model[rowNum][colNum] === model[rowNum + 3][colNum + 3] &&
                 model[rowNum][colNum] !== 0) {
                     setTimeout(function () {
-                        alert(` Player ${player} wins`);
+                        alert(` ${player} wins`);
                     }, 200)
                     setTimeout(function () { location.reload(); }, 250);
             }
@@ -111,6 +107,7 @@ const board = [
     }
     // return false
   }
+
   const winnerDiagonalUp = function (model, player) {
     for (let rowNum = 0; rowNum < 3; rowNum++) {
         for (let colNum = 0; colNum < model[rowNum].length; colNum++) {
@@ -119,7 +116,7 @@ const board = [
                 model[rowNum][colNum] === model[rowNum + 3][colNum - 3] &&
                 model[rowNum][colNum] !== 0) {
                     setTimeout(function () {
-                        alert(` Player ${player} wins`);
+                        alert(` ${player} wins`);
                     }, 200)
                     setTimeout(function () { location.reload(); }, 250);
             }

@@ -8,7 +8,7 @@
     left:315px;
     width: 700px;
     height: 500px;
-    background-color:rgb(50, 81, 218);
+    background-color:rgb(50, 117, 218);
     border:1px solid black;
     box-shadow: 5px 5px rgba(0, 0, 0, 0.384);
     align-items: center;
@@ -44,4 +44,10 @@ h1{
     border-radius: 50%;
     width: 80px;
     height:80px;
+}
+
+#directions{
+    font-family: 'Fredoka One', cursive;
+    display: flex;
+    justify-content: space-around;
 }
