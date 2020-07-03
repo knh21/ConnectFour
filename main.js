@@ -5,36 +5,28 @@ const board = [
     [0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0],
-]
-
-let column1 = document.querySelector("#col0")
-let column2 = document.querySelector("#col1")
-let column3 = document.querySelector("#col2")
-let column4 = document.querySelector("#col3")
-let column5 = document.querySelector("#col4")
-let column6 = document.querySelector("#col5")
-let column7 = document.querySelector("#col6")
-
-let disc;
-let selectTower;
-let currentPlayer = 1
-
-
-
-// function player1() {
-//     prompt("Enter your name. You will be Player 1")
-// }
-// player1()
-
-
-function startGame(event) {
+  ]
+  let column1 = document.querySelector("#col0")
+  let column2 = document.querySelector("#col1")
+  let column3 = document.querySelector("#col2")
+  let column4 = document.querySelector("#col3")
+  let column5 = document.querySelector("#col4")
+  let column6 = document.querySelector("#col5")
+  let column7 = document.querySelector("#col6")
+  let disc;
+  let selectTower;
+  let currentPlayer = 1
+  // function player1() {
+  //     prompt("Enter your name. You will be Player 1")
+  // }
+  // player1()
+  function startGame(event) {
     selectTower = event.currentTarget
     disc = document.createElement("div")
     if (currentPlayer === 1) {
         disc.className = "redDisc"
         if (selectTower.childElementCount < 6) {
             selectTower.appendChild(disc)
-    
             // winnerHorizontal(board, currentPlayer)
             currentPlayer = 2
         } else {
@@ -54,7 +46,6 @@ function startGame(event) {
             currentPlayer = 2
         }
     }
-  
     tieGame()
     let col = parseInt(selectTower.id.slice(-1))
     function updateBoard() {
@@ -64,16 +55,15 @@ function startGame(event) {
                 break;
             }
         }
+        console.log(board)
     }
     updateBoard()
       winnerVertical(board, currentPlayer)
        winnerHorizontal(board, currentPlayer)
        winnerDiagonalDown(board, currentPlayer)
-
-}
-
-
-const winnerVertical = function (model, player) {
+       winnerDiagonalUp(board, currentPlayer)
+  }
+  const winnerVertical = function (model, player) {
     for (let rowNum = 0; rowNum < 3; rowNum++) {
         for (let colNum = 0; colNum < model[rowNum].length; colNum++) {
             if (model[rowNum][colNum] === model[rowNum + 1][colNum] &&
@@ -84,18 +74,13 @@ const winnerVertical = function (model, player) {
                         alert(` Player ${player} wins`);
                     }, 200)
                     setTimeout(function () { location.reload(); }, 250);
-              
-            
-
             }
         }
     }
     // return false
-}
-
-
-const winnerHorizontal = function (model, player) {
-    for (let rowNum = 0; rowNum < 3; rowNum++) {
+  }
+  const winnerHorizontal = function (model, player) {
+    for (let rowNum = 0; rowNum < 6; rowNum++) {
         for (let colNum = 0; colNum < model[rowNum].length; colNum++) {
             if (model[rowNum][colNum] === model[rowNum][colNum + 1] &&
                 model[rowNum][colNum] === model[rowNum][colNum + 2] &&
@@ -105,18 +90,12 @@ const winnerHorizontal = function (model, player) {
                         alert(` Player ${player} wins`);
                     }, 200)
                     setTimeout(function () { location.reload(); }, 250);
-              
             }
         }
     }
-
     // return false
-}
-
-
-
-
-const winnerDiagonalDown = function (model,player) {
+  }
+  const winnerDiagonalDown = function (model,player) {
     for (let rowNum = 0; rowNum < 3; rowNum++) {
         for (let colNum = 0; colNum < model[rowNum].length; colNum++) {
             if (model[rowNum][colNum] === model[rowNum + 1][colNum + 1 ] &&
@@ -127,16 +106,12 @@ const winnerDiagonalDown = function (model,player) {
                         alert(` Player ${player} wins`);
                     }, 200)
                     setTimeout(function () { location.reload(); }, 250);
-              
-
             }
         }
     }
     // return false
-}
-
-
-const winnerDiagonalUp = function (model, player) {
+  }
+  const winnerDiagonalUp = function (model, player) {
     for (let rowNum = 0; rowNum < 3; rowNum++) {
         for (let colNum = 0; colNum < model[rowNum].length; colNum++) {
             if (model[rowNum][colNum] === model[rowNum + 1][colNum - 1 ] &&
@@ -147,22 +122,12 @@ const winnerDiagonalUp = function (model, player) {
                         alert(` Player ${player} wins`);
                     }, 200)
                     setTimeout(function () { location.reload(); }, 250);
-              
-
             }
         }
     }
-   
     // return false
-}
-
-
-
-
-
-
-
-function tieGame() {
+  }
+  function tieGame() {
     if ((column1.childElementCount === 6) &&
         (column2.childElementCount === 6) &&
         (column3.childElementCount === 6) &&
@@ -175,12 +140,11 @@ function tieGame() {
             alert("It's a tie! Play again.")
         }, 200)
     }
-}
-
-column1.addEventListener("click", startGame)
-column2.addEventListener("click", startGame)
-column3.addEventListener("click", startGame)
-column4.addEventListener("click", startGame)
-column5.addEventListener("click", startGame)
-column6.addEventListener("click", startGame)
-column7.addEventListener("click", startGame)
+  }
+  column1.addEventListener("click", startGame)
+  column2.addEventListener("click", startGame)
+  column3.addEventListener("click", startGame)
+  column4.addEventListener("click", startGame)
+  column5.addEventListener("click", startGame)
+  column6.addEventListener("click", startGame)
+  column7.addEventListener("click", startGame)
